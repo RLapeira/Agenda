@@ -14,7 +14,16 @@ namespace Agenda
         private string telefono;
         private string observaciones;
 
+        public Contacto(int id, string name, DateTime fecha, string telefono, string observaciones)
+        {
+            Id = id;
+            Name = name;
+            FechaNacimiento = fecha;
+            Telefono = telefono;
+            Observaciones = observaciones;
+        }
         public int Id { get; set; }
+        public string Name { get; set; }
         public DateTime FechaNacimiento { get; set; }
         public string Telefono { get; set; }
         public string Observaciones { get; set; }
