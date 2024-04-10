@@ -1,4 +1,6 @@
-﻿namespace Agenda
+﻿using System.Windows.Forms;
+
+namespace Agenda
 {
     partial class Form1
     {
@@ -29,34 +31,31 @@
         private void InitializeComponent()
         {
             gbContacto = new GroupBox();
-
+            tbObservaciones = new TextBox();
+            tbTelefono = new TextBox();
+            tbNombre = new TextBox();
+            tbId = new TextBox();
             lbObservaciones = new Label();
             lbTelefono = new Label();
             lbFechaNac = new Label();
             lbNombre = new Label();
             lbId = new Label();
-
-            tbId = new TextBox();
-            tbNombre = new TextBox();
-            tbTelefono = new TextBox();
-            tbObservaciones = new TextBox();
-
+            dtpFechaNac = new DateTimePicker();
             gbContacto.SuspendLayout();
             SuspendLayout();
             // 
             // gbContacto
             // 
+            gbContacto.Controls.Add(dtpFechaNac);
             gbContacto.Controls.Add(tbObservaciones);
             gbContacto.Controls.Add(tbTelefono);
             gbContacto.Controls.Add(tbNombre);
             gbContacto.Controls.Add(tbId);
-
             gbContacto.Controls.Add(lbObservaciones);
             gbContacto.Controls.Add(lbTelefono);
             gbContacto.Controls.Add(lbFechaNac);
             gbContacto.Controls.Add(lbNombre);
             gbContacto.Controls.Add(lbId);
-
             gbContacto.Location = new Point(27, 23);
             gbContacto.Name = "gbContacto";
             gbContacto.Size = new Size(665, 294);
@@ -64,10 +63,39 @@
             gbContacto.TabStop = false;
             gbContacto.Text = "Contacto:";
             // 
+            // tbObservaciones
+            // 
+            tbObservaciones.Location = new Point(217, 189);
+            tbObservaciones.Multiline = true;
+            tbObservaciones.Name = "tbObservaciones";
+            tbObservaciones.Size = new Size(284, 76);
+            tbObservaciones.TabIndex = 6;
+            // 
+            // tbTelefono
+            // 
+            tbTelefono.Location = new Point(217, 147);
+            tbTelefono.Name = "tbTelefono";
+            tbTelefono.Size = new Size(150, 31);
+            tbTelefono.TabIndex = 5;
+            // 
+            // tbNombre
+            // 
+            tbNombre.Location = new Point(217, 68);
+            tbNombre.Name = "tbNombre";
+            tbNombre.Size = new Size(214, 31);
+            tbNombre.TabIndex = 4;
+            // 
+            // tbId
+            // 
+            tbId.Location = new Point(217, 30);
+            tbId.Name = "tbId";
+            tbId.Size = new Size(65, 31);
+            tbId.TabIndex = 1;
+            // 
             // lbObservaciones
             // 
             lbObservaciones.AutoSize = true;
-            lbObservaciones.Location = new Point(19, 193);
+            lbObservaciones.Location = new Point(19, 189);
             lbObservaciones.Name = "lbObservaciones";
             lbObservaciones.Size = new Size(132, 25);
             lbObservaciones.TabIndex = 3;
@@ -76,7 +104,7 @@
             // lbTelefono
             // 
             lbTelefono.AutoSize = true;
-            lbTelefono.Location = new Point(19, 151);
+            lbTelefono.Location = new Point(19, 147);
             lbTelefono.Name = "lbTelefono";
             lbTelefono.Size = new Size(83, 25);
             lbTelefono.TabIndex = 2;
@@ -85,7 +113,7 @@
             // lbFechaNac
             // 
             lbFechaNac.AutoSize = true;
-            lbFechaNac.Location = new Point(19, 105);
+            lbFechaNac.Location = new Point(19, 107);
             lbFechaNac.Name = "lbFechaNac";
             lbFechaNac.Size = new Size(156, 25);
             lbFechaNac.TabIndex = 1;
@@ -94,7 +122,7 @@
             // lbNombre
             // 
             lbNombre.AutoSize = true;
-            lbNombre.Location = new Point(19, 67);
+            lbNombre.Location = new Point(19, 68);
             lbNombre.Name = "lbNombre";
             lbNombre.Size = new Size(82, 25);
             lbNombre.TabIndex = 1;
@@ -109,34 +137,12 @@
             lbId.TabIndex = 1;
             lbId.Text = "Id:";
             // 
-            // tbId
+            // dtpFechaNac
             // 
-            tbId.Location = new Point(217, 30);
-            tbId.Name = "tbId";
-            tbId.Size = new Size(65, 31);
-            tbId.TabIndex = 1;
-            // 
-            // tbNombre
-            // 
-            tbNombre.Location = new Point(217, 67);
-            tbNombre.Name = "tbNombre";
-            tbNombre.Size = new Size(214, 31);
-            tbNombre.TabIndex = 4;
-            // 
-            // tbTelefono
-            // 
-            tbTelefono.Location = new Point(217, 151);
-            tbTelefono.Name = "tbTelefono";
-            tbTelefono.Size = new Size(150, 31);
-            tbTelefono.TabIndex = 5;
-            // 
-            // tbObservaciones
-            // 
-            tbObservaciones.Location = new Point(217, 193);
-            tbObservaciones.Multiline = true;
-            tbObservaciones.Name = "tbObservaciones";
-            tbObservaciones.Size = new Size(284, 76);
-            tbObservaciones.TabIndex = 6;
+            dtpFechaNac.Location = new Point(217, 107);
+            dtpFechaNac.Name = "dtpFechaNac";
+            dtpFechaNac.Size = new Size(300, 31);
+            dtpFechaNac.TabIndex = 7;
             // 
             // Form1
             // 
@@ -165,5 +171,7 @@
         private TextBox tbTelefono;
         private TextBox tbNombre;
         private TextBox tbId;
+
+        private DateTimePicker dtpFechaNac;
     }
 }
