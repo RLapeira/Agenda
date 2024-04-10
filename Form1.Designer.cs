@@ -31,27 +31,24 @@ namespace Agenda
         private void InitializeComponent()
         {
             gbContacto = new GroupBox();
-
             dtpFechaNac = new DateTimePicker();
-
             tbObservaciones = new TextBox();
             tbTelefono = new TextBox();
             tbNombre = new TextBox();
             tbId = new TextBox();
-
             lbObservaciones = new Label();
             lbTelefono = new Label();
             lbFechaNac = new Label();
             lbNombre = new Label();
             lbId = new Label();
-
             btmAnadir = new Button();
             btmEliminar = new Button();
             btmModificar = new Button();
             btmGuardar = new Button();
             btmCancelar = new Button();
-
+            dataGridView1 = new DataGridView();
             gbContacto.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
             // gbContacto
@@ -199,11 +196,22 @@ namespace Agenda
             btmCancelar.Text = "Cancelar";
             btmCancelar.UseVisualStyleBackColor = true;
             // 
+            // dataGridView1
+            // 
+            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView1.Location = new Point(27, 376);
+            dataGridView1.Name = "dataGridView1";
+            dataGridView1.RowHeadersWidth = 62;
+            dataGridView1.RowTemplate.Height = 33;
+            dataGridView1.Size = new Size(951, 225);
+            dataGridView1.TabIndex = 6;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1009, 450);
+            ClientSize = new Size(1009, 620);
+            Controls.Add(dataGridView1);
             Controls.Add(btmCancelar);
             Controls.Add(btmGuardar);
             Controls.Add(btmModificar);
@@ -214,6 +222,7 @@ namespace Agenda
             Text = "Agenda de Contactos";
             gbContacto.ResumeLayout(false);
             gbContacto.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
         }
 
@@ -239,5 +248,7 @@ namespace Agenda
         private Button btmModificar;
         private Button btmGuardar;
         private Button btmCancelar;
+
+        private DataGridView dataGridView1;
     }
 }
