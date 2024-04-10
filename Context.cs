@@ -22,7 +22,7 @@ namespace Agenda
 
         SqlConnection connection = new SqlConnection(connectionString);
 
-        public void Connect()
+        public SqlConnection Connect()
         {
             try
             {
@@ -33,6 +33,7 @@ namespace Agenda
             {
                 Console.WriteLine("¡Error al conectar a la base de datos!\n" + ex.Message);
             }
+            return connection;
         }
 
         public void Disconnect()
