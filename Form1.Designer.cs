@@ -72,9 +72,10 @@ namespace Agenda
             // 
             // dtpFechaNac
             // 
+            dtpFechaNac.Format = DateTimePickerFormat.Short;
             dtpFechaNac.Location = new Point(217, 107);
             dtpFechaNac.Name = "dtpFechaNac";
-            dtpFechaNac.Size = new Size(300, 31);
+            dtpFechaNac.Size = new Size(150, 31);
             dtpFechaNac.TabIndex = 7;
             // 
             // tbObservaciones
