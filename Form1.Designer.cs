@@ -29,16 +29,72 @@
         private void InitializeComponent()
         {
             gbContacto = new GroupBox();
+            lbId = new Label();
+            lbNombre = new Label();
+            lbFechaNac = new Label();
+            lbTelefono = new Label();
+            lbObservaciones = new Label();
+            gbContacto.SuspendLayout();
             SuspendLayout();
             // 
-            // groupBox1
+            // gbContacto
             // 
+            gbContacto.Controls.Add(lbObservaciones);
+            gbContacto.Controls.Add(lbTelefono);
+            gbContacto.Controls.Add(lbFechaNac);
+            gbContacto.Controls.Add(lbNombre);
+            gbContacto.Controls.Add(lbId);
             gbContacto.Location = new Point(27, 23);
             gbContacto.Name = "gbContacto";
-            gbContacto.Size = new Size(542, 150);
+            gbContacto.Size = new Size(542, 271);
             gbContacto.TabIndex = 0;
             gbContacto.TabStop = false;
             gbContacto.Text = "Contacto:";
+            // 
+            // lbId
+            // 
+            lbId.AutoSize = true;
+            lbId.Location = new Point(19, 30);
+            lbId.Name = "lbId";
+            lbId.Size = new Size(59, 25);
+            lbId.TabIndex = 1;
+            lbId.Text = "Id:";
+            // 
+            // lbNombre
+            // 
+            lbNombre.AutoSize = true;
+            lbNombre.Location = new Point(19, 67);
+            lbNombre.Name = "lbNombre";
+            lbNombre.Size = new Size(59, 25);
+            lbNombre.TabIndex = 1;
+            lbNombre.Text = "Nombre:";
+            // 
+            // lbFechaNac
+            // 
+            lbFechaNac.AutoSize = true;
+            lbFechaNac.Location = new Point(19, 105);
+            lbFechaNac.Name = "lbFechaNac";
+            lbFechaNac.Size = new Size(59, 25);
+            lbFechaNac.TabIndex = 1;
+            lbFechaNac.Text = "Fecha Nacimiento:";
+            // 
+            // lbTelefono
+            // 
+            lbTelefono.AutoSize = true;
+            lbTelefono.Location = new Point(19, 141);
+            lbTelefono.Name = "lbTelefono";
+            lbTelefono.Size = new Size(59, 25);
+            lbTelefono.TabIndex = 2;
+            lbTelefono.Text = "Teléfono:";
+            // 
+            // lbObservaciones
+            // 
+            lbObservaciones.AutoSize = true;
+            lbObservaciones.Location = new Point(19, 181);
+            lbObservaciones.Name = "lbObservaciones";
+            lbObservaciones.Size = new Size(59, 25);
+            lbObservaciones.TabIndex = 3;
+            lbObservaciones.Text = "Observaciones:";
             // 
             // Form1
             // 
@@ -48,11 +104,19 @@
             Controls.Add(gbContacto);
             Name = "Form1";
             Text = "Agenda de Contactos";
+            gbContacto.ResumeLayout(false);
+            gbContacto.PerformLayout();
             ResumeLayout(false);
         }
 
         #endregion
 
         private GroupBox gbContacto;
+
+        private Label lbObservaciones;
+        private Label lbTelefono;
+        private Label lbFechaNac;
+        private Label lbNombre;
+        private Label lbId;
     }
 }
