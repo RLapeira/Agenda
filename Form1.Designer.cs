@@ -31,16 +31,26 @@ namespace Agenda
         private void InitializeComponent()
         {
             gbContacto = new GroupBox();
+
+            dtpFechaNac = new DateTimePicker();
+
             tbObservaciones = new TextBox();
             tbTelefono = new TextBox();
             tbNombre = new TextBox();
             tbId = new TextBox();
+
             lbObservaciones = new Label();
             lbTelefono = new Label();
             lbFechaNac = new Label();
             lbNombre = new Label();
             lbId = new Label();
-            dtpFechaNac = new DateTimePicker();
+
+            btmAnadir = new Button();
+            btmEliminar = new Button();
+            btmModificar = new Button();
+            btmGuardar = new Button();
+            btmCancelar = new Button();
+
             gbContacto.SuspendLayout();
             SuspendLayout();
             // 
@@ -62,6 +72,13 @@ namespace Agenda
             gbContacto.TabIndex = 0;
             gbContacto.TabStop = false;
             gbContacto.Text = "Contacto:";
+            // 
+            // dtpFechaNac
+            // 
+            dtpFechaNac.Location = new Point(217, 107);
+            dtpFechaNac.Name = "dtpFechaNac";
+            dtpFechaNac.Size = new Size(300, 31);
+            dtpFechaNac.TabIndex = 7;
             // 
             // tbObservaciones
             // 
@@ -137,18 +154,61 @@ namespace Agenda
             lbId.TabIndex = 1;
             lbId.Text = "Id:";
             // 
-            // dtpFechaNac
+            // btmAnadir
             // 
-            dtpFechaNac.Location = new Point(217, 107);
-            dtpFechaNac.Name = "dtpFechaNac";
-            dtpFechaNac.Size = new Size(300, 31);
-            dtpFechaNac.TabIndex = 7;
+            btmAnadir.Location = new Point(27, 323);
+            btmAnadir.Name = "btmAnadir";
+            btmAnadir.Size = new Size(112, 34);
+            btmAnadir.TabIndex = 1;
+            btmAnadir.Text = "Añadir";
+            btmAnadir.UseVisualStyleBackColor = true;
+            // 
+            // btmEliminar
+            // 
+            btmEliminar.Location = new Point(145, 323);
+            btmEliminar.Name = "btmEliminar";
+            btmEliminar.Size = new Size(112, 34);
+            btmEliminar.TabIndex = 2;
+            btmEliminar.Text = "Eliminar";
+            btmEliminar.UseVisualStyleBackColor = true;
+            // 
+            // btmModificar
+            // 
+            btmModificar.Location = new Point(263, 323);
+            btmModificar.Name = "btmModificar";
+            btmModificar.Size = new Size(112, 34);
+            btmModificar.TabIndex = 3;
+            btmModificar.Text = "Modificar";
+            btmModificar.UseVisualStyleBackColor = true;
+            // 
+            // btmGuardar
+            // 
+            btmGuardar.Location = new Point(462, 323);
+            btmGuardar.Name = "btmGuardar";
+            btmGuardar.Size = new Size(112, 34);
+            btmGuardar.TabIndex = 4;
+            btmGuardar.Text = "Guardar";
+            btmGuardar.UseVisualStyleBackColor = true;
+            // 
+            // btmCancelar
+            // 
+            btmCancelar.Location = new Point(580, 323);
+            btmCancelar.Name = "btmCancelar";
+            btmCancelar.Size = new Size(112, 34);
+            btmCancelar.TabIndex = 5;
+            btmCancelar.Text = "Cancelar";
+            btmCancelar.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1009, 450);
+            Controls.Add(btmCancelar);
+            Controls.Add(btmGuardar);
+            Controls.Add(btmModificar);
+            Controls.Add(btmEliminar);
+            Controls.Add(btmAnadir);
             Controls.Add(gbContacto);
             Name = "Form1";
             Text = "Agenda de Contactos";
@@ -173,5 +233,11 @@ namespace Agenda
         private TextBox tbId;
 
         private DateTimePicker dtpFechaNac;
+
+        private Button btmAnadir;
+        private Button btmEliminar;
+        private Button btmModificar;
+        private Button btmGuardar;
+        private Button btmCancelar;
     }
 }
