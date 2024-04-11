@@ -41,7 +41,7 @@ namespace Agenda
             lbFechaNac = new Label();
             lbNombre = new Label();
             lbId = new Label();
-            btmLimpiar = new Button();
+            btmNuevo = new Button();
             btmEliminar = new Button();
             btmModificar = new Button();
             btmGuardar = new Button();
@@ -106,6 +106,7 @@ namespace Agenda
             tbId.Name = "tbId";
             tbId.Size = new Size(65, 31);
             tbId.TabIndex = 1;
+            tbId.Enabled = false;
             // 
             // lbObservaciones
             // 
@@ -146,22 +147,21 @@ namespace Agenda
             // lbId
             // 
             lbId.AutoSize = true;
-            lbId.Enabled = false;
             lbId.Location = new Point(19, 30);
             lbId.Name = "lbId";
             lbId.Size = new Size(32, 25);
             lbId.TabIndex = 1;
             lbId.Text = "Id:";
             // 
-            // btmAnadir
+            // btmNuevo
             // 
-            btmLimpiar.Location = new Point(27, 323);
-            btmLimpiar.Name = "btmLimpiar";
-            btmLimpiar.Size = new Size(112, 34);
-            btmLimpiar.TabIndex = 1;
-            btmLimpiar.Text = "Limpiar";
-            btmLimpiar.UseVisualStyleBackColor = true;
-            btmLimpiar.Click += btmLimpiar_Click;
+            btmNuevo.Location = new Point(27, 323);
+            btmNuevo.Name = "btmNuevo";
+            btmNuevo.Size = new Size(112, 34);
+            btmNuevo.TabIndex = 1;
+            btmNuevo.Text = "Nuevo";
+            btmNuevo.UseVisualStyleBackColor = true;
+            btmNuevo.Click += btmNuevo_Click;
             // 
             // btmEliminar
             // 
@@ -222,7 +222,7 @@ namespace Agenda
             Controls.Add(btmGuardar);
             Controls.Add(btmModificar);
             Controls.Add(btmEliminar);
-            Controls.Add(btmLimpiar);
+            Controls.Add(btmNuevo);
             Controls.Add(gbContacto);
             Name = "Form1";
             Text = "Agenda de Contactos";
@@ -250,7 +250,7 @@ namespace Agenda
 
         private DateTimePicker dtpFechaNac;
 
-        private Button btmLimpiar;
+        private Button btmNuevo;
         private Button btmEliminar;
         private Button btmModificar;
         private Button btmGuardar;
