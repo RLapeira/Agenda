@@ -26,28 +26,39 @@ namespace Agenda
             tbTelefono.Text = c.Telefono;
             tbObservaciones.Text = c.Observaciones;
 
+            HabilitarBotonesCreacion();
+        }
+
+        private void HabilitarBotonesCreacion()
+        {
             btmGuardar.Enabled = true;
             btmCancelar.Enabled = true;
         }
 
         private void btmNuevo_Click(object sender, EventArgs e)
         {
+            HabilitarCampos();
+
+            HabilitarBotonesCreacion();
+
+            LimpiarCampos();
+
+            DeshabilitarBotones();
+        }
+
+        private void DeshabilitarBotones()
+        {
+            btmNuevo.Enabled = false;
+            btmEliminar.Enabled = false;
+            btmModificar.Enabled = false;
+        }
+
+        private void HabilitarCampos()
+        {
             tbNombre.Enabled = true;
             dtpFechaNac.Enabled = true;
             tbTelefono.Enabled = true;
             tbObservaciones.Enabled = true;
-            btmGuardar.Enabled = true;
-            btmCancelar.Enabled = true;
-
-            tbId.Text = null;
-            tbNombre.Text = null;
-            dtpFechaNac.Value = System.DateTime.Now;
-            tbTelefono.Text = null;
-            tbObservaciones.Text = null;
-
-            btmNuevo.Enabled = false;
-            btmEliminar.Enabled = false;
-            btmModificar.Enabled = false;
         }
 
         private void recargarDataGrid()
@@ -56,7 +67,7 @@ namespace Agenda
         }
         private void btmGuardar_Click(object sender, EventArgs e)
         {
-            if (tbId.Text == null)
+            if (tbId.Text.Length == 0)
             {
                 rep.AddContacto(tbNombre.Text, dtpFechaNac.Value, tbTelefono.Text, tbObservaciones.Text);
             }
@@ -66,13 +77,13 @@ namespace Agenda
             }
             recargarDataGrid();
 
-            btmGuardar.Enabled = false;
-            btmCancelar.Enabled = false;
+            DeshabilitarBotonesCreacion();
+            HabilitarBotones();
+            DeshabilitarCampos();
+        }
 
-            btmNuevo.Enabled = true;
-            btmEliminar.Enabled = true;
-            btmModificar.Enabled = true;
-
+        private void DeshabilitarCampos()
+        {
             tbNombre.Enabled = false;
             dtpFechaNac.Enabled = false;
             tbTelefono.Enabled = false;
@@ -81,27 +92,37 @@ namespace Agenda
             btmCancelar.Enabled = false;
         }
 
+        private void HabilitarBotones()
+        {
+            btmNuevo.Enabled = true;
+            btmEliminar.Enabled = true;
+            btmModificar.Enabled = true;
+        }
+
+        private void DeshabilitarBotonesCreacion()
+        {
+            btmGuardar.Enabled = false;
+            btmCancelar.Enabled = false;
+        }
+
         private void btmCancelar_Click(object sender, EventArgs e)
+        {
+            LimpiarCampos();
+
+            HabilitarBotones();
+
+            DeshabilitarCampos();
+
+            DeshabilitarBotonesCreacion();
+        }
+
+        private void LimpiarCampos()
         {
             tbId.Text = null;
             tbNombre.Text = null;
             dtpFechaNac.Value = System.DateTime.Now;
             tbTelefono.Text = null;
             tbObservaciones.Text = null;
-
-            btmGuardar.Enabled = false;
-            btmCancelar.Enabled = false;
-
-            btmNuevo.Enabled = true;
-            btmEliminar.Enabled = true;
-            btmModificar.Enabled = true;
-
-            tbNombre.Enabled = false;
-            dtpFechaNac.Enabled = false;
-            tbTelefono.Enabled = false;
-            tbObservaciones.Enabled = false;
-            btmGuardar.Enabled = false;
-            btmCancelar.Enabled = false;
         }
 
         private void btmEliminar_Click(object sender, EventArgs e)
@@ -112,12 +133,12 @@ namespace Agenda
 
         private void btmModificar_Click(object sender, EventArgs e)
         {
-            tbNombre.Enabled = true;
-            dtpFechaNac.Enabled = true;
-            tbTelefono.Enabled = true;
-            tbObservaciones.Enabled = true;
-            btmGuardar.Enabled = true;
-            btmCancelar.Enabled = true;
+            DeshabilitarBotones();
+
+            HabilitarCampos();
+
+            HabilitarBotonesCreacion();
         }
+
     }
 }
