@@ -50,7 +50,7 @@ namespace Agenda
         {
             string sql = "INSERT INTO [dbo].[Contactos]([Nombre], " +
                 "[FechaNacimiento], [Telefono], [Observaciones]) VALUES (\'" +
-                nombre + "\', \'" + fechaNacimiento.ToString() + "\', \'" + 
+                nombre + "\', \'" + fechaNacimiento.ToString("yyyy-MM-dd") + "\', \'" + 
                 telefono + "\', \'" + observaciones + "\');";
             SqlCommand command = new SqlCommand(sql, con);
             SqlDataReader dataReader = command.ExecuteReader();

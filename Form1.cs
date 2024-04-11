@@ -44,5 +44,11 @@ namespace Agenda
         {
             mostrarInfo.DataSource = rep.getAllContactos();
         }
+        private void btmGuardar_Click(object sender, EventArgs e)
+        {
+            rep.AddContacto(tbNombre.Text, dtpFechaNac.Value, tbTelefono.Text, tbObservaciones.Text);
+            
+            recargarDataGrid();
+        }
     }
 }

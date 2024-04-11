@@ -189,6 +189,7 @@ namespace Agenda
             btmGuardar.TabIndex = 4;
             btmGuardar.Text = "Guardar";
             btmGuardar.UseVisualStyleBackColor = true;
+            btmGuardar.Click += btmGuardar_Click;
             // 
             // btmCancelar
             // 
