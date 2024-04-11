@@ -56,7 +56,14 @@ namespace Agenda
         }
         private void btmGuardar_Click(object sender, EventArgs e)
         {
-            rep.AddContacto(tbNombre.Text, dtpFechaNac.Value, tbTelefono.Text, tbObservaciones.Text);
+            if (tbId.Text == null)
+            {
+                rep.AddContacto(tbNombre.Text, dtpFechaNac.Value, tbTelefono.Text, tbObservaciones.Text);
+            }
+            else
+            {
+                rep.ModificarContacto(int.Parse(tbId.Text), tbNombre.Text, dtpFechaNac.Value, tbTelefono.Text, tbObservaciones.Text);
+            }
             recargarDataGrid();
 
             btmGuardar.Enabled = false;
@@ -101,6 +108,16 @@ namespace Agenda
         {
             rep.DeleteContacto(tbId.Text);
             recargarDataGrid();
+        }
+
+        private void btmModificar_Click(object sender, EventArgs e)
+        {
+            tbNombre.Enabled = true;
+            dtpFechaNac.Enabled = true;
+            tbTelefono.Enabled = true;
+            tbObservaciones.Enabled = true;
+            btmGuardar.Enabled = true;
+            btmCancelar.Enabled = true;
         }
     }
 }

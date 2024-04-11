@@ -65,5 +65,14 @@ namespace Agenda
             SqlDataReader dataReader = command.ExecuteReader();
             dataReader.Close();
         }
+
+        internal void ModificarContacto(int id, string nombre, DateTime fechaNacimiento, string telefono, string observaciones)
+        {
+            string sql = $"UPDATE [dbo].[Contactos] SET [Nombre] = '{nombre}', [FechaNacimiento] = '{fechaNacimiento.ToString("yyyy-MM-dd")}', " +
+                $"[Telefono] = '{telefono}', [Observaciones] = '{observaciones}' WHERE [Id] = {id};";
+            SqlCommand command = new SqlCommand(sql, con);
+            SqlDataReader dataReader = command.ExecuteReader();
+            dataReader.Close();
+        }
     }
 }
