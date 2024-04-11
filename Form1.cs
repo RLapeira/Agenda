@@ -47,8 +47,11 @@ namespace Agenda
         private void btmGuardar_Click(object sender, EventArgs e)
         {
             rep.AddContacto(tbNombre.Text, dtpFechaNac.Value, tbTelefono.Text, tbObservaciones.Text);
-            
             recargarDataGrid();
+
+            btmNuevo.Enabled = true;
+            btmEliminar.Enabled = true;
+            btmModificar.Enabled = true;
         }
     }
 }
