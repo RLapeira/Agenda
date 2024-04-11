@@ -175,6 +175,7 @@ namespace Agenda
             btmEliminar.TabIndex = 2;
             btmEliminar.Text = "Eliminar";
             btmEliminar.UseVisualStyleBackColor = true;
+            btmEliminar.Click += btmEliminar_Click;
             // 
             // btmModificar
             // 

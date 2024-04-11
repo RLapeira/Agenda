@@ -96,5 +96,11 @@ namespace Agenda
             btmGuardar.Enabled = false;
             btmCancelar.Enabled = false;
         }
+
+        private void btmEliminar_Click(object sender, EventArgs e)
+        {
+            rep.DeleteContacto(tbId.Text);
+            recargarDataGrid();
+        }
     }
 }
