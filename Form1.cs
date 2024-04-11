@@ -27,10 +27,15 @@ namespace Agenda
             tbObservaciones.Text = c.Observaciones;
         }
 
-        private void btmAnadir_Click(object sender, EventArgs e)
+        private void btmLimpiar_Click(object sender, EventArgs e)
         {
-            rep.AddContacto(tbNombre.Text, dtpFechaNac.Value, tbTelefono.Text, tbObservaciones.Text);
-            recargarDataGrid();
+            tbId.Text = null;
+            tbNombre.Text = null;
+            dtpFechaNac.Value = System.DateTime.Now;
+            tbTelefono.Text = null;
+            tbObservaciones.Text = null;
+            //rep.AddContacto(tbNombre.Text, dtpFechaNac.Value, tbTelefono.Text, tbObservaciones.Text);
+            //recargarDataGrid();
         }
 
         private void recargarDataGrid()

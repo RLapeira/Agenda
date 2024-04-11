@@ -41,7 +41,7 @@ namespace Agenda
             lbFechaNac = new Label();
             lbNombre = new Label();
             lbId = new Label();
-            btmAnadir = new Button();
+            btmLimpiar = new Button();
             btmEliminar = new Button();
             btmModificar = new Button();
             btmGuardar = new Button();
@@ -155,13 +155,13 @@ namespace Agenda
             // 
             // btmAnadir
             // 
-            btmAnadir.Location = new Point(27, 323);
-            btmAnadir.Name = "btmAnadir";
-            btmAnadir.Size = new Size(112, 34);
-            btmAnadir.TabIndex = 1;
-            btmAnadir.Text = "Añadir";
-            btmAnadir.UseVisualStyleBackColor = true;
-            btmAnadir.Click += btmAnadir_Click;
+            btmLimpiar.Location = new Point(27, 323);
+            btmLimpiar.Name = "btmLimpiar";
+            btmLimpiar.Size = new Size(112, 34);
+            btmLimpiar.TabIndex = 1;
+            btmLimpiar.Text = "Limpiar";
+            btmLimpiar.UseVisualStyleBackColor = true;
+            btmLimpiar.Click += btmLimpiar_Click;
             // 
             // btmEliminar
             // 
@@ -222,7 +222,7 @@ namespace Agenda
             Controls.Add(btmGuardar);
             Controls.Add(btmModificar);
             Controls.Add(btmEliminar);
-            Controls.Add(btmAnadir);
+            Controls.Add(btmLimpiar);
             Controls.Add(gbContacto);
             Name = "Form1";
             Text = "Agenda de Contactos";
@@ -250,7 +250,7 @@ namespace Agenda
 
         private DateTimePicker dtpFechaNac;
 
-        private Button btmAnadir;
+        private Button btmLimpiar;
         private Button btmEliminar;
         private Button btmModificar;
         private Button btmGuardar;
