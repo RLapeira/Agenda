@@ -169,6 +169,7 @@ namespace Agenda
             // 
             // btmEliminar
             // 
+            btmEliminar.Enabled = false;
             btmEliminar.Location = new Point(145, 323);
             btmEliminar.Name = "btmEliminar";
             btmEliminar.Size = new Size(112, 34);
@@ -179,6 +180,7 @@ namespace Agenda
             // 
             // btmModificar
             // 
+            btmModificar.Enabled = false;
             btmModificar.Location = new Point(263, 323);
             btmModificar.Name = "btmModificar";
             btmModificar.Size = new Size(112, 34);

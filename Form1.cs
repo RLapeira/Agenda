@@ -88,7 +88,7 @@ namespace Agenda
             tbTelefono.Text = c.Telefono;
             tbObservaciones.Text = c.Observaciones;
 
-            HabilitarBotonesCreacion();
+            HabilitarBotones();
         }
 
         private void btmNuevo_Click(object sender, EventArgs e)
@@ -115,7 +115,9 @@ namespace Agenda
             recargarDataGrid();
 
             DeshabilitarBotonesCreacion();
-            HabilitarBotones();
+
+            btmNuevo.Enabled = true;
+
             DeshabilitarCampos();
         }
 
@@ -123,7 +125,7 @@ namespace Agenda
         {
             LimpiarCampos();
 
-            HabilitarBotones();
+            btmNuevo.Enabled = true;
 
             DeshabilitarCampos();
 
