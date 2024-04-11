@@ -102,11 +102,11 @@ namespace Agenda
             // 
             // tbId
             // 
+            tbId.Enabled = false;
             tbId.Location = new Point(217, 30);
             tbId.Name = "tbId";
             tbId.Size = new Size(65, 31);
             tbId.TabIndex = 1;
-            tbId.Enabled = false;
             // 
             // lbObservaciones
             // 
@@ -184,6 +184,7 @@ namespace Agenda
             // btmGuardar
             // 
             btmGuardar.Location = new Point(462, 323);
+            btmGuardar.Enabled = false;
             btmGuardar.Name = "btmGuardar";
             btmGuardar.Size = new Size(112, 34);
             btmGuardar.TabIndex = 4;
@@ -194,11 +195,13 @@ namespace Agenda
             // btmCancelar
             // 
             btmCancelar.Location = new Point(580, 323);
+            btmCancelar.Enabled = false;
             btmCancelar.Name = "btmCancelar";
             btmCancelar.Size = new Size(112, 34);
             btmCancelar.TabIndex = 5;
             btmCancelar.Text = "Cancelar";
             btmCancelar.UseVisualStyleBackColor = true;
+            btmCancelar.Click += btmCancelar_Click;
             // 
             // mostrarInfo
             // 

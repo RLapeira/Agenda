@@ -25,6 +25,9 @@ namespace Agenda
             dtpFechaNac.Value = c.FechaNacimiento;
             tbTelefono.Text = c.Telefono;
             tbObservaciones.Text = c.Observaciones;
+
+            btmGuardar.Enabled = true;
+            btmCancelar.Enabled = true;
         }
 
         private void btmNuevo_Click(object sender, EventArgs e)
@@ -52,6 +55,21 @@ namespace Agenda
             btmNuevo.Enabled = true;
             btmEliminar.Enabled = true;
             btmModificar.Enabled = true;
+        }
+
+        private void btmCancelar_Click(object sender, EventArgs e)
+        {
+            tbId.Text = null;
+            tbNombre.Text = null;
+            dtpFechaNac.Value = System.DateTime.Now;
+            tbTelefono.Text = null;
+            tbObservaciones.Text = null;
+
+            btmNuevo.Enabled = true;
+            btmEliminar.Enabled = true;
+            btmModificar.Enabled = true;
+            btmGuardar.Enabled = false;
+            btmCancelar.Enabled = false;
         }
     }
 }
