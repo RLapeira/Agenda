@@ -160,6 +160,7 @@ namespace Agenda
             btmAnadir.TabIndex = 1;
             btmAnadir.Text = "Añadir";
             btmAnadir.UseVisualStyleBackColor = true;
+            btmAnadir.Click += btmAnadir_Click;
             // 
             // btmEliminar
             // 
@@ -201,11 +202,14 @@ namespace Agenda
             // 
             mostrarInfo.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             mostrarInfo.Location = new Point(27, 376);
+            mostrarInfo.MultiSelect = false;
             mostrarInfo.Name = "mostrarInfo";
             mostrarInfo.RowHeadersWidth = 62;
             mostrarInfo.RowTemplate.Height = 33;
+            mostrarInfo.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             mostrarInfo.Size = new Size(951, 225);
             mostrarInfo.TabIndex = 6;
+            mostrarInfo.RowHeaderMouseClick += mostrarInfo_RowHeaderMouseClick;
             // 
             // Form1
             // 

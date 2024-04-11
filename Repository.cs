@@ -6,11 +6,10 @@ namespace Agenda
     public class Repository
     {
         SqlConnection con = new Context().Connect();
+        List<Contacto> contactos = new List<Contacto>();
 
         public List<Contacto> getAllContactos()
         {
-            List<Contacto> contactos = new List<Contacto>();
-
             string sql = "Select Id, " +
                 "Nombre, " +
                 "FechaNacimiento, " +
@@ -34,6 +33,11 @@ namespace Agenda
                 contactos.Add(contacto);
             }
             return contactos;
+        }
+
+        public Contacto getContacto(int index)
+        {
+            return contactos[index];
         }
     }
 }
