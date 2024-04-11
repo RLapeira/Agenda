@@ -11,7 +11,69 @@ namespace Agenda
             rep = new Repository();
         }
 
+        // Botones
+
+        private void HabilitarBotones()
+        {
+            btmNuevo.Enabled = true;
+            btmEliminar.Enabled = true;
+            btmModificar.Enabled = true;
+        }
+
+        private void DeshabilitarBotones()
+        {
+            btmNuevo.Enabled = false;
+            btmEliminar.Enabled = false;
+            btmModificar.Enabled = false;
+        }
+
+        // Botones Creación
+        private void HabilitarBotonesCreacion()
+        {
+            btmGuardar.Enabled = true;
+            btmCancelar.Enabled = true;
+        }
+
+        private void DeshabilitarBotonesCreacion()
+        {
+            btmGuardar.Enabled = false;
+            btmCancelar.Enabled = false;
+        }
+
+        // Campos
+        private void LimpiarCampos()
+        {
+            tbId.Text = null;
+            tbNombre.Text = null;
+            dtpFechaNac.Value = System.DateTime.Now;
+            tbTelefono.Text = null;
+            tbObservaciones.Text = null;
+        }
+
+        private void HabilitarCampos()
+        {
+            tbNombre.Enabled = true;
+            dtpFechaNac.Enabled = true;
+            tbTelefono.Enabled = true;
+            tbObservaciones.Enabled = true;
+        }
+
+        private void DeshabilitarCampos()
+        {
+            tbNombre.Enabled = false;
+            dtpFechaNac.Enabled = false;
+            tbTelefono.Enabled = false;
+            tbObservaciones.Enabled = false;
+            btmGuardar.Enabled = false;
+            btmCancelar.Enabled = false;
+        }
+
         private void Form1_Load(object sender, EventArgs e)
+        {
+            mostrarInfo.DataSource = rep.getAllContactos();
+        }
+
+        private void recargarDataGrid()
         {
             mostrarInfo.DataSource = rep.getAllContactos();
         }
@@ -29,12 +91,6 @@ namespace Agenda
             HabilitarBotonesCreacion();
         }
 
-        private void HabilitarBotonesCreacion()
-        {
-            btmGuardar.Enabled = true;
-            btmCancelar.Enabled = true;
-        }
-
         private void btmNuevo_Click(object sender, EventArgs e)
         {
             HabilitarCampos();
@@ -46,25 +102,6 @@ namespace Agenda
             DeshabilitarBotones();
         }
 
-        private void DeshabilitarBotones()
-        {
-            btmNuevo.Enabled = false;
-            btmEliminar.Enabled = false;
-            btmModificar.Enabled = false;
-        }
-
-        private void HabilitarCampos()
-        {
-            tbNombre.Enabled = true;
-            dtpFechaNac.Enabled = true;
-            tbTelefono.Enabled = true;
-            tbObservaciones.Enabled = true;
-        }
-
-        private void recargarDataGrid()
-        {
-            mostrarInfo.DataSource = rep.getAllContactos();
-        }
         private void btmGuardar_Click(object sender, EventArgs e)
         {
             if (tbId.Text.Length == 0)
@@ -82,29 +119,6 @@ namespace Agenda
             DeshabilitarCampos();
         }
 
-        private void DeshabilitarCampos()
-        {
-            tbNombre.Enabled = false;
-            dtpFechaNac.Enabled = false;
-            tbTelefono.Enabled = false;
-            tbObservaciones.Enabled = false;
-            btmGuardar.Enabled = false;
-            btmCancelar.Enabled = false;
-        }
-
-        private void HabilitarBotones()
-        {
-            btmNuevo.Enabled = true;
-            btmEliminar.Enabled = true;
-            btmModificar.Enabled = true;
-        }
-
-        private void DeshabilitarBotonesCreacion()
-        {
-            btmGuardar.Enabled = false;
-            btmCancelar.Enabled = false;
-        }
-
         private void btmCancelar_Click(object sender, EventArgs e)
         {
             LimpiarCampos();
@@ -114,15 +128,6 @@ namespace Agenda
             DeshabilitarCampos();
 
             DeshabilitarBotonesCreacion();
-        }
-
-        private void LimpiarCampos()
-        {
-            tbId.Text = null;
-            tbNombre.Text = null;
-            dtpFechaNac.Value = System.DateTime.Now;
-            tbTelefono.Text = null;
-            tbObservaciones.Text = null;
         }
 
         private void btmEliminar_Click(object sender, EventArgs e)
