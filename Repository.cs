@@ -11,7 +11,7 @@ namespace Agenda
 
         public List<Contacto> getAllContactos()
         {
-            contactos.Clear();
+            List<Contacto> nuevosContactos = new List<Contacto>();
 
             string sql = "Select Id, " +
                 "Nombre, " +
@@ -33,12 +33,13 @@ namespace Agenda
                     (string)dataReader.GetValue(3),
                     (string)dataReader.GetValue(4));
 
-                contactos.Add(contacto);
+                nuevosContactos.Add(contacto);
             }
 
             dataReader.Close();
+            contactos = nuevosContactos;
 
-            return contactos;
+            return nuevosContactos;
         }
 
         public Contacto getContacto(int index)
@@ -50,7 +51,7 @@ namespace Agenda
         {
             string sql = "INSERT INTO [dbo].[Contactos]([Nombre], " +
                 "[FechaNacimiento], [Telefono], [Observaciones]) VALUES (\'" +
-                nombre + "\', \'" + fechaNacimiento.ToString() + "\', \'" + 
+                nombre + "\', \'" + fechaNacimiento.ToString("yyyy-MM-dd") + "\', \'" + 
                 telefono + "\', \'" + observaciones + "\');";
             SqlCommand command = new SqlCommand(sql, con);
             SqlDataReader dataReader = command.ExecuteReader();

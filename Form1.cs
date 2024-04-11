@@ -27,20 +27,31 @@ namespace Agenda
             tbObservaciones.Text = c.Observaciones;
         }
 
-        private void btmLimpiar_Click(object sender, EventArgs e)
+        private void btmNuevo_Click(object sender, EventArgs e)
         {
             tbId.Text = null;
             tbNombre.Text = null;
             dtpFechaNac.Value = System.DateTime.Now;
             tbTelefono.Text = null;
             tbObservaciones.Text = null;
-            //rep.AddContacto(tbNombre.Text, dtpFechaNac.Value, tbTelefono.Text, tbObservaciones.Text);
-            //recargarDataGrid();
+
+            btmNuevo.Enabled = false;
+            btmEliminar.Enabled = false;
+            btmModificar.Enabled = false;
         }
 
         private void recargarDataGrid()
         {
             mostrarInfo.DataSource = rep.getAllContactos();
+        }
+        private void btmGuardar_Click(object sender, EventArgs e)
+        {
+            rep.AddContacto(tbNombre.Text, dtpFechaNac.Value, tbTelefono.Text, tbObservaciones.Text);
+            recargarDataGrid();
+
+            btmNuevo.Enabled = true;
+            btmEliminar.Enabled = true;
+            btmModificar.Enabled = true;
         }
     }
 }
