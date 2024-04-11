@@ -6,10 +6,13 @@ namespace Agenda
     public class Repository
     {
         SqlConnection con = new Context().Connect();
+
         List<Contacto> contactos = new List<Contacto>();
 
         public List<Contacto> getAllContactos()
         {
+            contactos.Clear();
+
             string sql = "Select Id, " +
                 "Nombre, " +
                 "FechaNacimiento, " +
@@ -32,12 +35,26 @@ namespace Agenda
 
                 contactos.Add(contacto);
             }
+
+            dataReader.Close();
+
             return contactos;
         }
 
         public Contacto getContacto(int index)
         {
             return contactos[index];
+        }
+
+        internal void AddContacto(string nombre, DateTime fechaNacimiento, string telefono, string observaciones)
+        {
+            string sql = "INSERT INTO [dbo].[Contactos]([Nombre], " +
+                "[FechaNacimiento], [Telefono], [Observaciones]) VALUES (\'" +
+                nombre + "\', \'" + fechaNacimiento.ToString() + "\', \'" + 
+                telefono + "\', \'" + observaciones + "\');";
+            SqlCommand command = new SqlCommand(sql, con);
+            SqlDataReader dataReader = command.ExecuteReader();
+            dataReader.Close();
         }
     }
 }

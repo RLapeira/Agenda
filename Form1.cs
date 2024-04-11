@@ -29,7 +29,13 @@ namespace Agenda
 
         private void btmAnadir_Click(object sender, EventArgs e)
         {
-            rep.AddContacto();
+            rep.AddContacto(tbNombre.Text, dtpFechaNac.Value, tbTelefono.Text, tbObservaciones.Text);
+            recargarDataGrid();
+        }
+
+        private void recargarDataGrid()
+        {
+            mostrarInfo.DataSource = rep.getAllContactos();
         }
     }
 }

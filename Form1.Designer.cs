@@ -146,6 +146,7 @@ namespace Agenda
             // lbId
             // 
             lbId.AutoSize = true;
+            lbId.Enabled = false;
             lbId.Location = new Point(19, 30);
             lbId.Name = "lbId";
             lbId.Size = new Size(32, 25);
