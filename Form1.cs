@@ -68,6 +68,28 @@ namespace Agenda
             btmCancelar.Enabled = false;
         }
 
+        private bool ComprobarCampos()
+        {
+            bool ok = true;
+
+            if(tbNombre.Text.Length == 0 || tbNombre.Text.Length > 100)
+            {
+                ok = false;
+            }
+
+            if(tbTelefono.Text.Length != 9 || int.TryParse(tbTelefono.Text, out int aux))
+            {
+                ok = false;
+            }
+
+            if (tbObservaciones.Text.Length > 500)
+            {
+                ok = false;
+            }
+
+            return ok;
+        }
+
         private void Form1_Load(object sender, EventArgs e)
         {
             mostrarInfo.DataSource = rep.getAllContactos();
@@ -104,21 +126,29 @@ namespace Agenda
 
         private void btmGuardar_Click(object sender, EventArgs e)
         {
-            if (tbId.Text.Length == 0)
+            if(ComprobarCampos())
             {
-                rep.AddContacto(tbNombre.Text, dtpFechaNac.Value, tbTelefono.Text, tbObservaciones.Text);
+                if (tbId.Text.Length == 0)
+                {
+                    rep.AddContacto(tbNombre.Text, dtpFechaNac.Value, tbTelefono.Text, tbObservaciones.Text);
+                }
+                else
+                {
+                    rep.ModificarContacto(int.Parse(tbId.Text), tbNombre.Text, dtpFechaNac.Value, tbTelefono.Text, tbObservaciones.Text);
+                }
+                recargarDataGrid();
+
+                DeshabilitarBotonesCreacion();
+
+                btmNuevo.Enabled = true;
+
+                DeshabilitarCampos();
             }
             else
             {
-                rep.ModificarContacto(int.Parse(tbId.Text), tbNombre.Text, dtpFechaNac.Value, tbTelefono.Text, tbObservaciones.Text);
+                MessageBox.Show("Alguno de los campos introducidos es incorrecto!");
             }
-            recargarDataGrid();
 
-            DeshabilitarBotonesCreacion();
-
-            btmNuevo.Enabled = true;
-
-            DeshabilitarCampos();
         }
 
         private void btmCancelar_Click(object sender, EventArgs e)
