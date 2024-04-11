@@ -56,7 +56,14 @@ namespace Agenda
         }
         private void btmGuardar_Click(object sender, EventArgs e)
         {
-            rep.AddContacto(tbNombre.Text, dtpFechaNac.Value, tbTelefono.Text, tbObservaciones.Text);
+            if (tbId.Text == null)
+            {
+                rep.AddContacto(tbNombre.Text, dtpFechaNac.Value, tbTelefono.Text, tbObservaciones.Text);
+            }
+            else
+            {
+                rep.ModificarContacto(int.Parse(tbId.Text), tbNombre.Text, dtpFechaNac.Value, tbTelefono.Text, tbObservaciones.Text);
+            }
             recargarDataGrid();
 
             btmGuardar.Enabled = false;
