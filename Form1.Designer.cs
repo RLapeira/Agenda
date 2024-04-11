@@ -72,6 +72,7 @@ namespace Agenda
             // 
             // dtpFechaNac
             // 
+            dtpFechaNac.Enabled = false;
             dtpFechaNac.Format = DateTimePickerFormat.Short;
             dtpFechaNac.Location = new Point(217, 107);
             dtpFechaNac.Name = "dtpFechaNac";
@@ -80,6 +81,7 @@ namespace Agenda
             // 
             // tbObservaciones
             // 
+            tbObservaciones.Enabled = false;
             tbObservaciones.Location = new Point(217, 189);
             tbObservaciones.Multiline = true;
             tbObservaciones.Name = "tbObservaciones";
@@ -88,6 +90,7 @@ namespace Agenda
             // 
             // tbTelefono
             // 
+            tbTelefono.Enabled = false;
             tbTelefono.Location = new Point(217, 147);
             tbTelefono.Name = "tbTelefono";
             tbTelefono.Size = new Size(150, 31);
@@ -95,6 +98,7 @@ namespace Agenda
             // 
             // tbNombre
             // 
+            tbNombre.Enabled = false;
             tbNombre.Location = new Point(217, 68);
             tbNombre.Name = "tbNombre";
             tbNombre.Size = new Size(214, 31);
@@ -171,6 +175,7 @@ namespace Agenda
             btmEliminar.TabIndex = 2;
             btmEliminar.Text = "Eliminar";
             btmEliminar.UseVisualStyleBackColor = true;
+            btmEliminar.Click += btmEliminar_Click;
             // 
             // btmModificar
             // 
@@ -183,8 +188,8 @@ namespace Agenda
             // 
             // btmGuardar
             // 
-            btmGuardar.Location = new Point(462, 323);
             btmGuardar.Enabled = false;
+            btmGuardar.Location = new Point(462, 323);
             btmGuardar.Name = "btmGuardar";
             btmGuardar.Size = new Size(112, 34);
             btmGuardar.TabIndex = 4;
@@ -194,8 +199,8 @@ namespace Agenda
             // 
             // btmCancelar
             // 
-            btmCancelar.Location = new Point(580, 323);
             btmCancelar.Enabled = false;
+            btmCancelar.Location = new Point(580, 323);
             btmCancelar.Name = "btmCancelar";
             btmCancelar.Size = new Size(112, 34);
             btmCancelar.TabIndex = 5;

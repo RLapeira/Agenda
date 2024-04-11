@@ -57,5 +57,13 @@ namespace Agenda
             SqlDataReader dataReader = command.ExecuteReader();
             dataReader.Close();
         }
+
+        internal void DeleteContacto(string id)
+        {
+            string sql = $"DELETE FROM [dbo].[Contactos] WHERE [Id] ={id};";
+            SqlCommand command = new SqlCommand(sql, con);
+            SqlDataReader dataReader = command.ExecuteReader();
+            dataReader.Close();
+        }
     }
 }

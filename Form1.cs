@@ -32,6 +32,13 @@ namespace Agenda
 
         private void btmNuevo_Click(object sender, EventArgs e)
         {
+            tbNombre.Enabled = true;
+            dtpFechaNac.Enabled = true;
+            tbTelefono.Enabled = true;
+            tbObservaciones.Enabled = true;
+            btmGuardar.Enabled = true;
+            btmCancelar.Enabled = true;
+
             tbId.Text = null;
             tbNombre.Text = null;
             dtpFechaNac.Value = System.DateTime.Now;
@@ -52,9 +59,19 @@ namespace Agenda
             rep.AddContacto(tbNombre.Text, dtpFechaNac.Value, tbTelefono.Text, tbObservaciones.Text);
             recargarDataGrid();
 
+            btmGuardar.Enabled = false;
+            btmCancelar.Enabled = false;
+
             btmNuevo.Enabled = true;
             btmEliminar.Enabled = true;
             btmModificar.Enabled = true;
+
+            tbNombre.Enabled = false;
+            dtpFechaNac.Enabled = false;
+            tbTelefono.Enabled = false;
+            tbObservaciones.Enabled = false;
+            btmGuardar.Enabled = false;
+            btmCancelar.Enabled = false;
         }
 
         private void btmCancelar_Click(object sender, EventArgs e)
@@ -65,11 +82,25 @@ namespace Agenda
             tbTelefono.Text = null;
             tbObservaciones.Text = null;
 
+            btmGuardar.Enabled = false;
+            btmCancelar.Enabled = false;
+
             btmNuevo.Enabled = true;
             btmEliminar.Enabled = true;
             btmModificar.Enabled = true;
+
+            tbNombre.Enabled = false;
+            dtpFechaNac.Enabled = false;
+            tbTelefono.Enabled = false;
+            tbObservaciones.Enabled = false;
             btmGuardar.Enabled = false;
             btmCancelar.Enabled = false;
+        }
+
+        private void btmEliminar_Click(object sender, EventArgs e)
+        {
+            rep.DeleteContacto(tbId.Text);
+            recargarDataGrid();
         }
     }
 }
