@@ -41,14 +41,14 @@ namespace Agenda
             lbFechaNac = new Label();
             lbNombre = new Label();
             lbId = new Label();
-            btmAnadir = new Button();
+            btmLimpiar = new Button();
             btmEliminar = new Button();
             btmModificar = new Button();
             btmGuardar = new Button();
             btmCancelar = new Button();
-            dataGridView1 = new DataGridView();
+            mostrarInfo = new DataGridView();
             gbContacto.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)mostrarInfo).BeginInit();
             SuspendLayout();
             // 
             // gbContacto
@@ -146,6 +146,7 @@ namespace Agenda
             // lbId
             // 
             lbId.AutoSize = true;
+            lbId.Enabled = false;
             lbId.Location = new Point(19, 30);
             lbId.Name = "lbId";
             lbId.Size = new Size(32, 25);
@@ -154,12 +155,13 @@ namespace Agenda
             // 
             // btmAnadir
             // 
-            btmAnadir.Location = new Point(27, 323);
-            btmAnadir.Name = "btmAnadir";
-            btmAnadir.Size = new Size(112, 34);
-            btmAnadir.TabIndex = 1;
-            btmAnadir.Text = "Añadir";
-            btmAnadir.UseVisualStyleBackColor = true;
+            btmLimpiar.Location = new Point(27, 323);
+            btmLimpiar.Name = "btmLimpiar";
+            btmLimpiar.Size = new Size(112, 34);
+            btmLimpiar.TabIndex = 1;
+            btmLimpiar.Text = "Limpiar";
+            btmLimpiar.UseVisualStyleBackColor = true;
+            btmLimpiar.Click += btmLimpiar_Click;
             // 
             // btmEliminar
             // 
@@ -197,33 +199,37 @@ namespace Agenda
             btmCancelar.Text = "Cancelar";
             btmCancelar.UseVisualStyleBackColor = true;
             // 
-            // dataGridView1
+            // mostrarInfo
             // 
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(27, 376);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.RowHeadersWidth = 62;
-            dataGridView1.RowTemplate.Height = 33;
-            dataGridView1.Size = new Size(951, 225);
-            dataGridView1.TabIndex = 6;
+            mostrarInfo.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            mostrarInfo.Location = new Point(27, 376);
+            mostrarInfo.MultiSelect = false;
+            mostrarInfo.Name = "mostrarInfo";
+            mostrarInfo.RowHeadersWidth = 62;
+            mostrarInfo.RowTemplate.Height = 33;
+            mostrarInfo.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            mostrarInfo.Size = new Size(951, 225);
+            mostrarInfo.TabIndex = 6;
+            mostrarInfo.RowHeaderMouseClick += mostrarInfo_RowHeaderMouseClick;
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1009, 620);
-            Controls.Add(dataGridView1);
+            Controls.Add(mostrarInfo);
             Controls.Add(btmCancelar);
             Controls.Add(btmGuardar);
             Controls.Add(btmModificar);
             Controls.Add(btmEliminar);
-            Controls.Add(btmAnadir);
+            Controls.Add(btmLimpiar);
             Controls.Add(gbContacto);
             Name = "Form1";
             Text = "Agenda de Contactos";
+            Load += Form1_Load;
             gbContacto.ResumeLayout(false);
             gbContacto.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)mostrarInfo).EndInit();
             ResumeLayout(false);
         }
 
@@ -244,12 +250,12 @@ namespace Agenda
 
         private DateTimePicker dtpFechaNac;
 
-        private Button btmAnadir;
+        private Button btmLimpiar;
         private Button btmEliminar;
         private Button btmModificar;
         private Button btmGuardar;
         private Button btmCancelar;
 
-        private DataGridView dataGridView1;
+        private DataGridView mostrarInfo;
     }
 }
