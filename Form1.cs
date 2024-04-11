@@ -102,5 +102,15 @@ namespace Agenda
             rep.DeleteContacto(tbId.Text);
             recargarDataGrid();
         }
+
+        private void btmModificar_Click(object sender, EventArgs e)
+        {
+            tbNombre.Enabled = true;
+            dtpFechaNac.Enabled = true;
+            tbTelefono.Enabled = true;
+            tbObservaciones.Enabled = true;
+            btmGuardar.Enabled = true;
+            btmCancelar.Enabled = true;
+        }
     }
 }

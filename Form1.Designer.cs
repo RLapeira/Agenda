@@ -185,6 +185,7 @@ namespace Agenda
             btmModificar.TabIndex = 3;
             btmModificar.Text = "Modificar";
             btmModificar.UseVisualStyleBackColor = true;
+            btmModificar.Click += btmModificar_Click;
             // 
             // btmGuardar
             // 
