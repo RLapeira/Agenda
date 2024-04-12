@@ -6,12 +6,25 @@ namespace Agenda
 {
     public class Repository
     {
-        SqlConnection con = new Context().Connect();
+        Context context;
+        SqlConnection con;
 
         List<Contacto> contactos = new List<Contacto>();
 
+        private void Connect()
+        {
+            context = new Context();
+            con = context.Connect();
+        }
+        private void Disconnect()
+        {
+            con = context.Disconnect();
+        }
+
         public List<Contacto> getAllContactos()
         {
+            Connect();
+
             List<Contacto> nuevosContactos = new List<Contacto>();
 
             string sql = "EXEC dbo.ObtenerContactos;";
@@ -34,7 +47,9 @@ namespace Agenda
 
             dataReader.Close();
             contactos = nuevosContactos;
-            
+
+            Disconnect();
+
             return nuevosContactos;
         }
 
@@ -45,6 +60,8 @@ namespace Agenda
 
         internal void AddContacto(string nombre, DateTime fechaNacimiento, string telefono, string observaciones)
         {
+            Connect();
+
             SqlTransaction tran = con.BeginTransaction();
 
             string sql = $"EXEC dbo.AñadirContacto @Nombre = '{nombre}', " +
@@ -63,10 +80,16 @@ namespace Agenda
             {
                 tran.Rollback();
             }
+            finally
+            {
+                Disconnect();
+            }
         }
 
         internal void DeleteContacto(string id)
         {
+            Connect();
+
             SqlTransaction tran = con.BeginTransaction();
 
             string sql = $"EXEC dbo.EliminarContacto @Id = {id};";
@@ -83,10 +106,16 @@ namespace Agenda
             {
                 tran.Rollback();
             }
+            finally
+            {
+                Disconnect();
+            }
         }
 
         internal void ModificarContacto(int id, string nombre, DateTime fechaNacimiento, string telefono, string observaciones)
         {
+            Connect();
+
             SqlTransaction tran = con.BeginTransaction();
 
             string sql = $"EXEC dbo.ModificarContacto @Id = {id}, @Nombre = '{nombre}', " +
@@ -104,6 +133,10 @@ namespace Agenda
             catch (Exception ex)
             {
                 tran.Rollback();
+            }
+            finally
+            {
+                Disconnect();
             }
         }
     }
