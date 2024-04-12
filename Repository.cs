@@ -63,8 +63,9 @@ namespace Agenda
 
         internal void ModificarContacto(int id, string nombre, DateTime fechaNacimiento, string telefono, string observaciones)
         {
-            string sql = $"UPDATE [dbo].[Contactos] SET [Nombre] = '{nombre}', [FechaNacimiento] = '{fechaNacimiento.ToString("yyyy-MM-dd")}', " +
-                $"[Telefono] = '{telefono}', [Observaciones] = '{observaciones}' WHERE [Id] = {id};";
+            string sql = $"EXEC dbo.ModificarContacto @Id = {id}, @Nombre = '{nombre}', " +
+                $"@FechaNacimiento = '{fechaNacimiento.ToString("yyyy -MM-dd")}', " +
+                $"@Telefono = '{telefono}', @Observaciones = '{observaciones}';";
             SqlCommand command = new SqlCommand(sql, con);
             SqlDataReader dataReader = command.ExecuteReader();
             dataReader.Close();
