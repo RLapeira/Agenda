@@ -36,17 +36,19 @@ namespace Agenda
             return connection;
         }
 
-        public void Disconnect()
+        public SqlConnection Disconnect()
         {
             try
             {
                 connection.Close();
+                Console.WriteLine("Conexión cerrada");
                 connection.Dispose();
             }
             catch (Exception ex)
             {
                 Console.WriteLine("¡Error al cerrar la conexión con base de datos!\n" + ex.Message);
             }
+            return connection;
         }
 
     }
