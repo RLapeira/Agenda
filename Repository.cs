@@ -45,10 +45,9 @@ namespace Agenda
 
         internal void AddContacto(string nombre, DateTime fechaNacimiento, string telefono, string observaciones)
         {
-            string sql = "INSERT INTO [dbo].[Contactos]([Nombre], " +
-                "[FechaNacimiento], [Telefono], [Observaciones]) VALUES (\'" +
-                nombre + "\', \'" + fechaNacimiento.ToString("yyyy-MM-dd") + "\', \'" +
-                telefono + "\', \'" + observaciones + "\');";
+            string sql = $"EXEC dbo.AñadirContacto @Nombre = '{nombre}', " +
+                $"@FechaNacimiento = '{fechaNacimiento.ToString("yyyy -MM-dd")}', " +
+                $"@Telefono = '{telefono}', @Observaciones = '{observaciones}';";
             SqlCommand command = new SqlCommand(sql, con);
             SqlDataReader dataReader = command.ExecuteReader();
             dataReader.Close();
