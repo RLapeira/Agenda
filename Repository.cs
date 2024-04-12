@@ -55,7 +55,7 @@ namespace Agenda
 
         internal void DeleteContacto(string id)
         {
-            string sql = $"DELETE FROM [dbo].[Contactos] WHERE [Id] ={id};";
+            string sql = $"EXEC dbo.EliminarContacto @Id = {id};";
             SqlCommand command = new SqlCommand(sql, con);
             SqlDataReader dataReader = command.ExecuteReader();
             dataReader.Close();
