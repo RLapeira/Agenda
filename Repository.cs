@@ -45,30 +45,66 @@ namespace Agenda
 
         internal void AddContacto(string nombre, DateTime fechaNacimiento, string telefono, string observaciones)
         {
+            SqlTransaction tran = con.BeginTransaction();
+
             string sql = $"EXEC dbo.AñadirContacto @Nombre = '{nombre}', " +
                 $"@FechaNacimiento = '{fechaNacimiento.ToString("yyyy -MM-dd")}', " +
                 $"@Telefono = '{telefono}', @Observaciones = '{observaciones}';";
             SqlCommand command = new SqlCommand(sql, con);
-            SqlDataReader dataReader = command.ExecuteReader();
-            dataReader.Close();
+            
+            command.Transaction = tran;
+
+            try
+            {
+                command.ExecuteNonQuery();
+                tran.Commit();
+            }
+            catch (Exception ex)
+            {
+                tran.Rollback();
+            }
         }
 
         internal void DeleteContacto(string id)
         {
+            SqlTransaction tran = con.BeginTransaction();
+
             string sql = $"EXEC dbo.EliminarContacto @Id = {id};";
             SqlCommand command = new SqlCommand(sql, con);
-            SqlDataReader dataReader = command.ExecuteReader();
-            dataReader.Close();
+
+            command.Transaction = tran;
+
+            try
+            {
+                command.ExecuteNonQuery();
+                tran.Commit();
+            }
+            catch (Exception ex)
+            {
+                tran.Rollback();
+            }
         }
 
         internal void ModificarContacto(int id, string nombre, DateTime fechaNacimiento, string telefono, string observaciones)
         {
+            SqlTransaction tran = con.BeginTransaction();
+
             string sql = $"EXEC dbo.ModificarContacto @Id = {id}, @Nombre = '{nombre}', " +
                 $"@FechaNacimiento = '{fechaNacimiento.ToString("yyyy -MM-dd")}', " +
                 $"@Telefono = '{telefono}', @Observaciones = '{observaciones}';";
             SqlCommand command = new SqlCommand(sql, con);
-            SqlDataReader dataReader = command.ExecuteReader();
-            dataReader.Close();
+
+            command.Transaction = tran;
+
+            try
+            {
+                command.ExecuteNonQuery();
+                tran.Commit();
+            }
+            catch (Exception ex)
+            {
+                tran.Rollback();
+            }
         }
     }
 }
