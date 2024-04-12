@@ -69,25 +69,61 @@ namespace Agenda
             btmCancelar.Enabled = false;
         }
 
+        private bool esNumerico(string telefono)
+        {
+            bool ok = true;
+            int i = 0;
+            while (i < telefono.Length)
+            {
+                if (telefono[i] < 48 || telefono[i] > 57)
+                {
+                    ok = false;
+                }
+                i++;
+            }
+            return ok;
+        }
+
         private bool ComprobarCampos()
         {
             bool ok = true;
+            string mensaje = "";
 
-            if(tbNombre.Text.Length == 0 || tbNombre.Text.Length > 100)
+            if(tbNombre.Text.Length == 0)
             {
                 ok = false;
+                mensaje = "El nombre no puede estar vacío.\n";
             }
 
-            if(tbTelefono.Text.Length != 9 || int.TryParse(tbTelefono.Text, out int aux))
+            if (tbNombre.Text.Length > 100)
             {
                 ok = false;
+                mensaje += "El nombre no puede ser más de 100 caracteres.\n";
+            }
+
+            if (tbTelefono.Text.Length != 9)
+            {
+                ok = false;
+                mensaje += "El telefono tiene que tener 9 dígitos.\n";
+            }
+
+            if(!esNumerico(tbTelefono.Text))
+            {
+                ok = false;
+                mensaje += "El telefono tiene que ser un número.\n";
             }
 
             if (tbObservaciones.Text.Length > 500)
             {
                 ok = false;
+                mensaje += "Las observaciones no pueden superar los 500 caracteres.";
             }
-
+            
+            if(!ok)
+            {
+                MessageBox.Show(mensaje);
+            }
+            
             return ok;
         }
 
@@ -127,7 +163,7 @@ namespace Agenda
 
         private void btmGuardar_Click(object sender, EventArgs e)
         {
-            if(ComprobarCampos())
+            if (ComprobarCampos())
             {
                 if (tbId.Text.Length == 0)
                 {
@@ -144,10 +180,6 @@ namespace Agenda
                 btmNuevo.Enabled = true;
 
                 DeshabilitarCampos();
-            }
-            else
-            {
-                MessageBox.Show("Alguno de los campos introducidos es incorrecto!");
             }
 
         }

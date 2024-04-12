@@ -218,6 +218,8 @@ namespace Agenda
             mostrarInfo.Location = new Point(27, 376);
             mostrarInfo.MultiSelect = false;
             mostrarInfo.Name = "mostrarInfo";
+            mostrarInfo.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            mostrarInfo.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.None;
             mostrarInfo.RowHeadersWidth = 62;
             mostrarInfo.RowTemplate.Height = 33;
             mostrarInfo.SelectionMode = DataGridViewSelectionMode.FullRowSelect;

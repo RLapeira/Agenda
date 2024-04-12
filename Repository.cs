@@ -1,31 +1,40 @@
 ﻿using System;
+using System.Data;
 using System.Data.SqlClient;
 
 namespace Agenda
 {
     public class Repository
     {
-        SqlConnection con = new Context().Connect();
+        Context context;
+        SqlConnection con;
 
         List<Contacto> contactos = new List<Contacto>();
 
+        private void Connect()
+        {
+            context = new Context();
+            con = context.Connect();
+        }
+        private void Disconnect()
+        {
+            con = context.Disconnect();
+        }
+
         public List<Contacto> getAllContactos()
         {
+            Connect();
+
             List<Contacto> nuevosContactos = new List<Contacto>();
 
-            string sql = "Select Id, " +
-                "Nombre, " +
-                "FechaNacimiento, " +
-                "Telefono, " +
-                "Observaciones " +
-                "from dbo.Contactos";
-            SqlCommand command = new SqlCommand(sql, con);
-            
+            string sql = "EXEC dbo.ObtenerContactos;";
+
+            SqlCommand command = new SqlCommand(sql, con); ;
             SqlDataReader dataReader = command.ExecuteReader();
 
             Contacto contacto;
 
-            while(dataReader.Read())
+            while (dataReader.Read())
             {
                 contacto = new Contacto((int)dataReader.GetValue(0),
                     (string)dataReader.GetValue(1),
@@ -39,6 +48,8 @@ namespace Agenda
             dataReader.Close();
             contactos = nuevosContactos;
 
+            Disconnect();
+
             return nuevosContactos;
         }
 
@@ -49,30 +60,84 @@ namespace Agenda
 
         internal void AddContacto(string nombre, DateTime fechaNacimiento, string telefono, string observaciones)
         {
-            string sql = "INSERT INTO [dbo].[Contactos]([Nombre], " +
-                "[FechaNacimiento], [Telefono], [Observaciones]) VALUES (\'" +
-                nombre + "\', \'" + fechaNacimiento.ToString("yyyy-MM-dd") + "\', \'" + 
-                telefono + "\', \'" + observaciones + "\');";
+            Connect();
+
+            SqlTransaction tran = con.BeginTransaction();
+
+            string sql = $"EXEC dbo.AñadirContacto @Nombre = '{nombre}', " +
+                $"@FechaNacimiento = '{fechaNacimiento.ToString("yyyy -MM-dd")}', " +
+                $"@Telefono = '{telefono}', @Observaciones = '{observaciones}';";
             SqlCommand command = new SqlCommand(sql, con);
-            SqlDataReader dataReader = command.ExecuteReader();
-            dataReader.Close();
+            
+            command.Transaction = tran;
+
+            try
+            {
+                command.ExecuteNonQuery();
+                tran.Commit();
+            }
+            catch (Exception ex)
+            {
+                tran.Rollback();
+            }
+            finally
+            {
+                Disconnect();
+            }
         }
 
         internal void DeleteContacto(string id)
         {
-            string sql = $"DELETE FROM [dbo].[Contactos] WHERE [Id] ={id};";
+            Connect();
+
+            SqlTransaction tran = con.BeginTransaction();
+
+            string sql = $"EXEC dbo.EliminarContacto @Id = {id};";
             SqlCommand command = new SqlCommand(sql, con);
-            SqlDataReader dataReader = command.ExecuteReader();
-            dataReader.Close();
+
+            command.Transaction = tran;
+
+            try
+            {
+                command.ExecuteNonQuery();
+                tran.Commit();
+            }
+            catch (Exception ex)
+            {
+                tran.Rollback();
+            }
+            finally
+            {
+                Disconnect();
+            }
         }
 
         internal void ModificarContacto(int id, string nombre, DateTime fechaNacimiento, string telefono, string observaciones)
         {
-            string sql = $"UPDATE [dbo].[Contactos] SET [Nombre] = '{nombre}', [FechaNacimiento] = '{fechaNacimiento.ToString("yyyy-MM-dd")}', " +
-                $"[Telefono] = '{telefono}', [Observaciones] = '{observaciones}' WHERE [Id] = {id};";
+            Connect();
+
+            SqlTransaction tran = con.BeginTransaction();
+
+            string sql = $"EXEC dbo.ModificarContacto @Id = {id}, @Nombre = '{nombre}', " +
+                $"@FechaNacimiento = '{fechaNacimiento.ToString("yyyy -MM-dd")}', " +
+                $"@Telefono = '{telefono}', @Observaciones = '{observaciones}';";
             SqlCommand command = new SqlCommand(sql, con);
-            SqlDataReader dataReader = command.ExecuteReader();
-            dataReader.Close();
+
+            command.Transaction = tran;
+
+            try
+            {
+                command.ExecuteNonQuery();
+                tran.Commit();
+            }
+            catch (Exception ex)
+            {
+                tran.Rollback();
+            }
+            finally
+            {
+                Disconnect();
+            }
         }
     }
 }
