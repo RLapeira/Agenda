@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data;
 using System.Data.SqlClient;
 
 namespace Agenda
@@ -13,19 +14,14 @@ namespace Agenda
         {
             List<Contacto> nuevosContactos = new List<Contacto>();
 
-            string sql = "Select Id, " +
-                "Nombre, " +
-                "FechaNacimiento, " +
-                "Telefono, " +
-                "Observaciones " +
-                "from dbo.Contactos";
-            SqlCommand command = new SqlCommand(sql, con);
-            
+            string sql = "EXEC dbo.ObtenerContactos;";
+
+            SqlCommand command = new SqlCommand(sql, con); ;
             SqlDataReader dataReader = command.ExecuteReader();
 
             Contacto contacto;
 
-            while(dataReader.Read())
+            while (dataReader.Read())
             {
                 contacto = new Contacto((int)dataReader.GetValue(0),
                     (string)dataReader.GetValue(1),
@@ -38,7 +34,7 @@ namespace Agenda
 
             dataReader.Close();
             contactos = nuevosContactos;
-
+            
             return nuevosContactos;
         }
 
@@ -51,7 +47,7 @@ namespace Agenda
         {
             string sql = "INSERT INTO [dbo].[Contactos]([Nombre], " +
                 "[FechaNacimiento], [Telefono], [Observaciones]) VALUES (\'" +
-                nombre + "\', \'" + fechaNacimiento.ToString("yyyy-MM-dd") + "\', \'" + 
+                nombre + "\', \'" + fechaNacimiento.ToString("yyyy-MM-dd") + "\', \'" +
                 telefono + "\', \'" + observaciones + "\');";
             SqlCommand command = new SqlCommand(sql, con);
             SqlDataReader dataReader = command.ExecuteReader();
