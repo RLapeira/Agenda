@@ -45,7 +45,7 @@ namespace Agenda
         {
             tbId.Text = null;
             tbNombre.Text = null;
-            dtpFechaNac.Value = System.DateTime.Now;
+            dtpFechaNac.Value = System.DateTime.Today;
             tbTelefono.Text = null;
             tbObservaciones.Text = null;
         }
@@ -54,6 +54,7 @@ namespace Agenda
         {
             tbNombre.Enabled = true;
             dtpFechaNac.Enabled = true;
+            dtpFechaNac.MaxDate = DateTime.Today;
             tbTelefono.Enabled = true;
             tbObservaciones.Enabled = true;
         }

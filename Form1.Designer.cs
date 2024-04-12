@@ -78,6 +78,7 @@ namespace Agenda
             dtpFechaNac.Name = "dtpFechaNac";
             dtpFechaNac.Size = new Size(150, 31);
             dtpFechaNac.TabIndex = 7;
+            dtpFechaNac.MaxDate = DateTime.Today;
             // 
             // tbObservaciones
             // 
