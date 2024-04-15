@@ -27,9 +27,8 @@ namespace Agenda
 
             List<Contacto> nuevosContactos = new List<Contacto>();
 
-            string sql = "EXEC dbo.ObtenerContactos;";
-
-            SqlCommand command = new SqlCommand(sql, con); ;
+            SqlCommand command = new SqlCommand("ObtenerContactos", con);
+            command.CommandType = CommandType.StoredProcedure;
             SqlDataReader dataReader = command.ExecuteReader();
 
             Contacto contacto;
@@ -64,10 +63,12 @@ namespace Agenda
 
             SqlTransaction tran = con.BeginTransaction();
 
-            string sql = $"EXEC dbo.AñadirContacto @Nombre = '{nombre}', " +
-                $"@FechaNacimiento = '{fechaNacimiento.ToString("yyyy -MM-dd")}', " +
-                $"@Telefono = '{telefono}', @Observaciones = '{observaciones}';";
-            SqlCommand command = new SqlCommand(sql, con);
+            SqlCommand command = new SqlCommand("AñadirContacto", con);
+            command.CommandType = CommandType.StoredProcedure;
+            command.Parameters.AddWithValue("@Nombre", nombre);
+            command.Parameters.AddWithValue("@FechaNacimiento", fechaNacimiento);
+            command.Parameters.AddWithValue("@Telefono", telefono);
+            command.Parameters.AddWithValue("@Observaciones", observaciones);
             
             command.Transaction = tran;
 
@@ -92,8 +93,9 @@ namespace Agenda
 
             SqlTransaction tran = con.BeginTransaction();
 
-            string sql = $"EXEC dbo.EliminarContacto @Id = {id};";
-            SqlCommand command = new SqlCommand(sql, con);
+            SqlCommand command = new SqlCommand("EliminarContacto", con);
+            command.CommandType = CommandType.StoredProcedure;
+            command.Parameters.AddWithValue("@Id", id);
 
             command.Transaction = tran;
 
@@ -118,10 +120,13 @@ namespace Agenda
 
             SqlTransaction tran = con.BeginTransaction();
 
-            string sql = $"EXEC dbo.ModificarContacto @Id = {id}, @Nombre = '{nombre}', " +
-                $"@FechaNacimiento = '{fechaNacimiento.ToString("yyyy -MM-dd")}', " +
-                $"@Telefono = '{telefono}', @Observaciones = '{observaciones}';";
-            SqlCommand command = new SqlCommand(sql, con);
+            SqlCommand command = new SqlCommand("ModificarContacto", con);
+            command.CommandType = CommandType.StoredProcedure;
+            command.Parameters.AddWithValue("@Id", id);
+            command.Parameters.AddWithValue("@Nombre", nombre);
+            command.Parameters.AddWithValue("@FechaNacimiento", fechaNacimiento);
+            command.Parameters.AddWithValue("@Telefono", telefono);
+            command.Parameters.AddWithValue("@Observaciones", observaciones);
 
             command.Transaction = tran;
 
